@@ -1,6 +1,7 @@
 package ua.nure.chernev.FinalTask.web.command;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -75,6 +76,10 @@ public class LoginCommand extends Command {
 			Role userRole = Role.getRole(user);
 			LOG.trace("userRole --> " + userRole);
 			if (userRole == Role.ADMIN) {
+				
+				PrintWriter out= response.getWriter();
+				out.write("Login successfull...");
+				
 				request.setAttribute("redirect", Path.REDIRECT_DOCTORS_LIST);
 			}
 	
@@ -148,6 +153,8 @@ public class LoginCommand extends Command {
 			LOG.info("User " + user + " logged as " + userRole.toString().toLowerCase());
 			
 		}
+		
+		
 		
 		LOG.debug("Command finished");
 		return forward;

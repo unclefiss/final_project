@@ -23,8 +23,6 @@ public class ViewAddNurseCommand extends Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {		
 		LOG.debug("Command starts");
-		
-		request.getSession().setAttribute("loginExist", false);
 
 		LOG.debug("Command finished");
 		return Path.PAGE_ADD_NURSE;
