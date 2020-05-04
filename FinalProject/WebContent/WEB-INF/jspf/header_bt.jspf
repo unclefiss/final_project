@@ -1,0 +1,61 @@
+
+<%@ page import="ua.nure.chernev.FinalTask.db.Role"%>
+<%@ include file="/WEB-INF/jspf/directive/page.jspf"%>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="h" %>
+
+
+<fmt:setLocale value="${sessionScope.lang}" />
+<fmt:setBundle basename="resources" />
+
+<div class="bg-info">
+	<div class="container ">
+
+		<div class="nav-scroller py-1 mb-4 " >
+			<nav class="nav d-flex justify-content-between bg-light">
+				<c:choose>
+					<c:when test="${userRole.name == 'admin' }">
+						<a class="p-3 text-dark d-inline " href="controller?command=listDoctors"><fmt:message
+								key="header_jspf.anchor.doctors" /></a> &nbsp;
+					<a class="p-3 text-dark d-inline" href="controller?command=listPatients"><fmt:message
+								key="header_jspf.anchor.patients" /></a>  &nbsp;
+				</c:when>
+					<c:when test="${userRole.name == 'patient'}">
+						<a class="p-3 text-dark" href="controller?command=viewPatientCard"><fmt:message
+								key="header_jspf.anchor.my_card" /></a> &nbsp;
+				</c:when>
+					<c:when test="${userRole.name == 'doctor'}">
+						<c:if test="${doctorPosition.name == 'nurse'}">
+							<a class="p-3 text-dark"
+								href="controller?command=listPrescriptions"><fmt:message
+									key="header_jspf.anchor.prescriptions" /></a> &nbsp;
+					</c:if>
+						<c:if test="${doctorPosition.name == 'doctor'}">
+							<a class="p-3 text-dark" href="controller?command=listPatients"><fmt:message
+									key="header_jspf.anchor.my_patients" /></a> &nbsp;
+							<a class="p-3 text-dark"
+								href="controller?command=listPrescriptions"><fmt:message
+									key="header_jspf.anchor.prescriptions" /></a> &nbsp;
+					</c:if>
+
+					</c:when>
+				</c:choose>
+				<a class="p-3 text-dark" href="controller?command=viewSettings"><fmt:message
+						key="header_jspf.anchor.settings" /></a> &nbsp;
+				<div class="col-4 d-flex justify-content-end align-items-center"></div>
+				<div
+					class=" d-flex justify-content-end align-items-center text-dark">
+					<h6><h:user_info first_name="${user.firstName}" last_name="${user.lastName }"/>
+					<m:role doctor="${doctor}" user="${user}" lang="${lang}"/></h6>
+					
+				</div>
+				<div class="col-1 d-flex justify-content-end align-items-center">
+					<a class="btn btn-sm btn-outline-success"
+						href="controller?command=logout"><fmt:message
+							key="header_jspf.anchor.logout" /></a>
+				</div>
+			</nav>
+		</div>
+
+	</div>
+</div>

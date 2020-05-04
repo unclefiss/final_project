@@ -1,0 +1,14 @@
+
+
+<div class="container" style="">
+	<footer class="page-footer font-small blue pt-4">
+
+		<!-- Footer Links -->
+		<div class="container-fluid text-center text-md-left">
+			<!-- Copyright -->
+			<div class="footer-copyright text-center py-3">© 2020 Hospital
+				of the saint Pablo</div>
+		</div>
+		<!-- Copyright -->
+	</footer>
+</div>
