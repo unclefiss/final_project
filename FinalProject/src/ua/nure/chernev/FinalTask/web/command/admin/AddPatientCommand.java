@@ -122,6 +122,8 @@ public class AddPatientCommand extends Command {
 		cardDao.insertCard(card);
 		LOG.trace("Insert into DB.hospital_cards : card --> " + card);
 
+		request.setAttribute("redirect", Path.REDIRECT_PATIENTS_LIST);
+		
 		String forward = Path.COMMAND_LIST_PATIENTS;
 
 		LOG.debug("Command finished");
