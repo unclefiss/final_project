@@ -23,6 +23,8 @@ public class Prescription extends Entity {
 	private int diagnosisId;
 	
 	private String diagnosisComment;
+	
+	private int doctorId;
 
 	public String getDiagnosisComment() {
 		return diagnosisComment;
@@ -63,6 +65,14 @@ public class Prescription extends Entity {
 
 	public void setTypeId(int typeId) {
 		this.typeId = typeId;
+	}
+
+	public int getDoctorId() {
+		return doctorId;
+	}
+
+	public void setDoctorId(int doctorId) {
+		this.doctorId = doctorId;
 	}
 
 	@Override

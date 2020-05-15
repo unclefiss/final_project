@@ -19,6 +19,8 @@ public class PatientPrescriptionBean extends Entity {
 	private String diagnosisComment;
 
 	private String prescriptionComment;
+	
+	private int doctorId;
 
 	public String getPatientFirstName() {
 		return patientFirstName;
@@ -74,6 +76,14 @@ public class PatientPrescriptionBean extends Entity {
 
 	public void setPrescriptionComment(String prescriptionComment) {
 		this.prescriptionComment = prescriptionComment;
+	}
+
+	public int getDoctorId() {
+		return doctorId;
+	}
+
+	public void setDoctorId(int doctorId) {
+		this.doctorId = doctorId;
 	}
 
 	@Override

@@ -20,7 +20,8 @@ import java.util.List;
  */
 public class PrescriptionDao {
 
-	private static final String SQL_INSERT_PRESCRIPTION = "INSERT INTO `prescriptions` (`id`, `comment`, `diagnosis_id`, `status_id`, `type_id`) VALUES (NULL, ?, ?, '1', ?);";
+	private static final String SQL_INSERT_PRESCRIPTION = "INSERT INTO `prescriptions` (`id`, `comment`, `diagnosis_id`, `status_id`, `type_id`, `doctor_id`) VALUES (NULL, ?, ?, '1', ?, ?)";
+//														   INSERT INTO `prescriptions` (`id`, `comment`, `diagnosis_id`, `status_id`, `type_id`, `doctor_id`) VALUES (NULL, 'pills', '28', '1', '0', '36');
 
 	private static final String SQL_FIND_PRESCRIPTION_BY_CARD_ID = "SELECT prescriptions.*, diagnosis.* FROM prescriptions, diagnosis"
 			+ " WHERE diagnosis.card_id = ? AND diagnosis.id = prescriptions.diagnosis_id";
@@ -64,7 +65,8 @@ public class PrescriptionDao {
 			int k = 1;
 			pstmt.setString(k++, prescription.getComment());
 			pstmt.setInt(k++, prescription.getDiagnosisId());
-			pstmt.setInt(k, prescription.getTypeId());
+			pstmt.setInt(k++, prescription.getTypeId());
+			pstmt.setInt(k, prescription.getDoctorId());
 			pstmt.executeUpdate();
 		} finally {
 			pstmt.close();
@@ -188,6 +190,7 @@ public class PrescriptionDao {
 				prescription.setTypeId(rs.getInt(Fields.PRESCRIPTION_TYPE_ID));
 				prescription.setDiagnosisId(rs.getInt(Fields.PRESCRIPTION_DIAGNOSIS_ID));
 				prescription.setDiagnosisComment(rs.getString(Fields.DIAGNOSIS_COMMENT));
+				prescription.setDoctorId(rs.getInt(Fields.PRESCRIPTION_DOCTOR_ID));
 				return prescription;
 			} catch (SQLException e) {
 				throw new IllegalStateException(e);

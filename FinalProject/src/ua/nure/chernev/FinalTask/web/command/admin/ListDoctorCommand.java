@@ -76,6 +76,7 @@ public class ListDoctorCommand extends Command {
 			doctors = new DoctorDao().findDoctors();
 			LOG.trace("Found in DB: doctorsList --> " + doctors);
 		}
+		
 		if (request.getParameter("sortDirection") != null && request.getParameter("sortId") != null) {
 			LOG.debug("Sorting starts");
 
@@ -112,7 +113,7 @@ public class ListDoctorCommand extends Command {
 							} else {
 								result = o1.getLastName().compareTo(o2.getLastName());
 							}
-							return result * direction;
+							return result;
 						} else {
 							return ((o1.getPatientCount() - o2.getPatientCount()) * direction);
 

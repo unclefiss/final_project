@@ -51,6 +51,11 @@ public final class Fields {
 		public static final String PRESCRIPTION_STATUS_ID = "status_id";
 		public static final String PRESCRIPTION_TYPE_ID = "type_id";
 		public static final String PRESCRIPTION_DIAGNOSIS_ID = "diagnosis_id";
+		public static final String PRESCRIPTION_DOCTOR_ID = "doctor_id";
+		
+		public static final String NURSE_DOCTOR_DOCTOR_ID = "nurse_id";
+		public static final String NURSE_DOCTOR_NURSE_ID = "doctor_id";
+		public static final String NURSE_DOCTOR_PRESCRIPTION_COUNT = "prescriptions_count";
 		
 		public static final String STATUS_NAME = "name";
 		public static final String STATUS_NAME_RU = "name_ru";

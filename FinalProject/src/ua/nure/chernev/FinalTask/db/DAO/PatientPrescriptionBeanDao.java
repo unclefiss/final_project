@@ -107,6 +107,7 @@ public class PatientPrescriptionBeanDao {
 				prescription.setPrescriptionComment(rs.getString(Fields.PRESCRIPTION_COMMENT));
 				prescription.setStatusId(rs.getInt(Fields.PRESCRIPTION_STATUS_ID));
 				prescription.setTypeId(rs.getInt(Fields.PRESCRIPTION_TYPE_ID));
+				prescription.setDoctorId(rs.getInt(Fields.PRESCRIPTION_DOCTOR_ID));
 				prescription.setDiagnosisComment(rs.getString(Fields.DIAGNOSIS_COMMENT));
 				prescription.setPatientFirstName(rs.getString(Fields.USER_FIRST_NAME));
 				prescription.setPatientLastName(rs.getString(Fields.USER_LAST_NAME));

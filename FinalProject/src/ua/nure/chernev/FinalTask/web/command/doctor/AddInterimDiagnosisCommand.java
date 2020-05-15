@@ -11,12 +11,15 @@ import org.apache.log4j.Logger;
 
 import ua.nure.chernev.FinalTask.Path;
 import ua.nure.chernev.FinalTask.db.DAO.DiagnosisDao;
+import ua.nure.chernev.FinalTask.db.DAO.DoctorDao;
 import ua.nure.chernev.FinalTask.db.DAO.HospitalCardDao;
 import ua.nure.chernev.FinalTask.db.DAO.PatientDao;
 import ua.nure.chernev.FinalTask.db.DAO.PrescriptionDao;
 import ua.nure.chernev.FinalTask.db.entity.Diagnosis;
+import ua.nure.chernev.FinalTask.db.entity.Doctor;
 import ua.nure.chernev.FinalTask.db.entity.HospitalCard;
 import ua.nure.chernev.FinalTask.db.entity.Prescription;
+import ua.nure.chernev.FinalTask.db.entity.User;
 import ua.nure.chernev.FinalTask.exception.AppException;
 import ua.nure.chernev.FinalTask.web.command.Command;
 
@@ -43,6 +46,12 @@ public class AddInterimDiagnosisCommand extends Command {
 		DiagnosisDao diagnosisDao = new DiagnosisDao();
 		Diagnosis diagnosis = new Diagnosis();
 		
+		User user = (User) session.getAttribute("user");
+		
+		Doctor doctor = new DoctorDao().findDoctorByUserId(user);
+		
+		LOG.debug("Get get from DB: " + doctor);
+		
 		String diagnosisText = request.getParameter("interimDiagnosis");
 		LOG.debug("Get the parameter from request" + diagnosisText);
 		
@@ -65,6 +74,7 @@ public class AddInterimDiagnosisCommand extends Command {
 		prescription.setTypeId(typeId);
 		prescription.setDiagnosisId(diagnosisDao.findLastDiagnosisId());
 		prescription.setDiagnosisComment(diagnosisText);
+		prescription.setDoctorId(doctor.getId().intValue());
 		LOG.debug("Initiliazation prescription --> " + prescription);
 		
 		prescriptionDao.insertPrescription(prescription);
